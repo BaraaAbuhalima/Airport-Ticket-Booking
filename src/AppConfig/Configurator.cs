@@ -5,24 +5,32 @@ namespace Airport_Ticket_Booking.AppConfig;
 
 public static class Configurator
 {
-    #region ApplyConfigurations
+    private static IConfigurationRoot Configuration { get; set; } = LoadConfigurations();
     
+    #region ApplyConfigurations
     public static void ApplyConfigurations()
     {
-        var config = LoadConfigurationJson();
-        CultureConfigurator.ApplyCultureSettings(config);
+        CultureConfigurator.ApplyCultureSettings(Configuration);
     }
     #endregion
 
-    #region LoadConfigurationJson
-    
-    private static IConfigurationRoot LoadConfigurationJson()
+    #region LoadConfigurations
+    public static IConfigurationRoot LoadConfigurations()
     {
-        var config = new ConfigurationBuilder()
+        return new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
-        
-        return config;
+    }
+    #endregion
+    
+    #region GetConfigurations
+    public static IConfigurationRoot GetConfigurations()
+    {
+        if (Configuration is null)
+        {
+          return  Configuration=LoadConfigurations();
+        }
+        return Configuration;
     }
     #endregion
 }

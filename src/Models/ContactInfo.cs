@@ -1,7 +1,13 @@
 ﻿namespace Airport_Ticket_Booking.Models;
 
-public class ContactInfo
+public struct ContactInfo
 {
-    string Email { get; set; }
-    string Phone { get; set; }
+   public string Email { get; set; }
+   public string Phone { get; set; }
+
+   public ContactInfo(string email, string phone)
+   {
+      this.Email = email;
+      this.Phone = phone;
+   }
 }

@@ -6,6 +6,7 @@ public static class CultureConfigurator
 {
     public static void ApplyCultureSettings(IConfigurationRoot config)
     {
+        
         var cultureName = config["CultureSettings:Culture"] ?? "en-US";
         var longTimePattern = config["CultureSettings:LongTimePattern"]??"dd-MM-yyyy HH:mm:ss";
         var shortTimePattern = config["CultureSettings:ShortTimePattern"]??"dd-MM-yyyy";
